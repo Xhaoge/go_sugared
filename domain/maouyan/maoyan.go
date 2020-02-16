@@ -5,6 +5,7 @@ import (
 	"goSpider/infra/downloader"
 	"goSpider/infra/errors"
 	"regexp"
+	"strings"
 )
 
 type RankListMaoYanInfo struct {
@@ -70,7 +71,7 @@ func GetMaoYanRankInfo(url string) ([]RankListMaoYanInfo, error) {
 
 	var movieNameList []string
 	var startYearList []string
-	movieNameAndStartYearRegexp :+ regexp.MustCompile(movieNameAndStartYearPattern)
+	movieNameAndStartYearRegexp := regexp.MustCompile(movieNameAndStartYearPattern)
 	for index, movie := range movieNameAndStartYearRegexp.FindAllStringSubmatch(responseString, -1) {
 		fmt.Println("index, movie: ", index, movie)
 		movieNameList = append(movieNameList, movie[1])
@@ -80,8 +81,8 @@ func GetMaoYanRankInfo(url string) ([]RankListMaoYanInfo, error) {
 	var boxOfficeIncomeList []string
 	boxOfficeIncomeRegexp := regexp.MustCompile(boxOfficeIncomePattern)
 	for index, boxoffice := range boxOfficeIncomeRegexp.FindAllStringSubmatch(responseString, -1) {
-		fmt.Println("index, boxOffice: ", index, boxOffice)
-		boxList := strings.Split(boxOffice[1], ";")
+		fmt.Println("index, boxOffice: ", index, boxoffice)
+		boxList := strings.Split(boxoffice[1], ";")
 		for _, box := range boxList {
 			var value string
 			value += base64ToMap[box]
@@ -106,13 +107,13 @@ func GetMaoYanRankInfo(url string) ([]RankListMaoYanInfo, error) {
 	}
 
 	var result []RankListMaoYanInfo
-	for i := 0; i <len(movieNameList); i++ {
+	for i := 0; i < len(movieNameList); i++ {
 		var OneRankListMaoYanInfo RankListMaoYanInfo
 		OneRankListMaoYanInfo = RankListMaoYanInfo{
-			Rank: 	    rankList[i]
-			MovieName:  movieNameList[i]
-			StartYear:	startYearList[i]
-			Url:		urlList[i]
+			Rank:      rankList[i],
+			MovieName: movieNameList[i],
+			StartYear: startYearList[i],
+			Url:       urlList[i],
 		}
 		result = append(result, OneRankListMaoYanInfo)
 	}
