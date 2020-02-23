@@ -1,0 +1,8 @@
+# 初始化gin 项目以及goMod
+    https://studygolang.com/articles/24708
+    https://blog.csdn.net/feiwutudou/article/details/81188146
+    https://www.jianshu.com/p/93b5cdd458b4
+
+
+# 使用gin项目理解
+    https://github.com/itcloudy/base-framework.git
