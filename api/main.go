@@ -1,14 +1,8 @@
 package main
 
 import (
-<<<<<<< HEAD
+	"api/router"
 	"fmt"
-	"api/config"
-	"github.com/gin-gonic/gin"
-=======
-	// "go_hh_DoubleKill/api/config"
-	".go_hh_DoubleKill/api/router"
->>>>>>> c5e4120f0e1e01da3e40d70bc3633cac2f05d87c
 )
 
 func main() {
@@ -51,19 +45,6 @@ func main() {
 	//     file.POST("/upload",controller.Base64Upload)
 	// }
 
-<<<<<<< HEAD
-	// 加载配置文件
-	var err error
-    fPath, _ := os.Getwd()
-    fPath = path.Join(fPath, "conf")
-    configPath := flag.String("c", fPath, "config file path")
-    flag.Parse()
-    err = config.LoadConfigInformation(*configPath)
-    fmt.Printf("%+v\n",common.ConfigInfo.Server)
-    if err != nil {
-        return
-	}
-=======
 	// // 加载配置文件
 	// var err error
 	// fPath, _ := os.Getwd()
@@ -75,9 +56,9 @@ func main() {
 	// if err != nil {
 	//     return
 	// }
->>>>>>> c5e4120f0e1e01da3e40d70bc3633cac2f05d87c
 
 	// 指定地址和端口号
 	// r.Run(":8090")
-	router.Inte()
+	router.Init()
+	fmt.Println("let`go.....")
 }

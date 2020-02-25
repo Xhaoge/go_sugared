@@ -12,3 +12,8 @@ type UserLoginAdd struct {
 type UserUpdate struct {
 	UserName string `json:"userName"`
 }
+
+type PicBaseReq struct {
+	Id       int    `json:"id"`
+	Username string `json:"username"`
+}
