@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"go_hh_DoubleKill/api/config"
+	"api/config"
 	"github.com/gin-gonic/gin"
 )
 
@@ -52,7 +52,7 @@ func main()  {
     fPath = path.Join(fPath, "conf")
     configPath := flag.String("c", fPath, "config file path")
     flag.Parse()
-    err = system.LoadConfigInformation(*configPath)
+    err = config.LoadConfigInformation(*configPath)
     fmt.Printf("%+v\n",common.ConfigInfo.Server)
     if err != nil {
         return
