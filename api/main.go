@@ -1,23 +1,22 @@
 package main
 
 import (
-	"fmt"
 	// "go_hh_DoubleKill/api/config"
-	"github.com/gin-gonic/gin"
+	".go_hh_DoubleKill/api/router"
 )
 
 func main() {
 	// Engin
 	//router := gin.Default()
 	// 测试路由
-	r := gin.Default()
-	fmt.Println("test")
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"code":    200,
-			"message": "congratulation to you",
-		})
-	})
+	// r := gin.Default()
+	// fmt.Println("test")
+	// r.GET("/ping", func(c *gin.Context) {
+	// 	c.JSON(200, gin.H{
+	// 		"code":    200,
+	// 		"message": "congratulation to you",
+	// 	})
+	// })
 
 	// router := gin.New()
 	//     // 加载html文件，即template包下所有文件
@@ -59,5 +58,6 @@ func main() {
 	// }
 
 	// 指定地址和端口号
-	r.Run(":8090")
+	// r.Run(":8090")
+	router.Inte()
 }
