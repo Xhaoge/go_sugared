@@ -10,7 +10,16 @@ import (
 
 func Init() {
 	fmt.Println("router Init")
+
 	router := gin.Default()
+	fmt.Println("test")
+	router.GET("/ping", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"code":    200,
+			"message": "congratulation to you",
+		})
+	})
+
 	// CrossDomain跨域处理，options请求处理
 	router.Use(middleware.CrossDomain())
 	// v1群组对任何人开放
@@ -30,5 +39,5 @@ func Init() {
 		v2.POST("/reply1", post.Reply1)
 		v2.POST("/reply2", post.Reply2)
 	}
-	router.Run(":8000")
+	router.Run(":8090")
 }
