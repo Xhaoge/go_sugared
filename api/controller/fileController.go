@@ -22,10 +22,10 @@ func Test(context *gin.Context) {
 
 func PicAdd(context *gin.Context) {
 	fmt.Println("file test add")
-	fh, err := context.FormFile("file")
-	if err != nil {
-		fmt.Println(err)
-	}
+	fh := context.PostForm("file")
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
 	file, err2 := fh.Open()
 	defer file.Close()
 	if err2 != nil {
