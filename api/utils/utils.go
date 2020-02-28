@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"math/rand"
 )
 
@@ -25,5 +26,5 @@ func GetRandomStr(num int) string {
 
 // 定义最基本格式返回；
 func MakeBaseResponse(code int) {
-	pass
+	fmt.Println("test response")
 }
