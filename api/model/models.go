@@ -1,8 +1,11 @@
 package model
 
-type BaseResponse struct {
-	Code string `json:"code"`
-	Msg  string `json:"msg`
+// import "golang.org/x/tools/go/ssa/interp"
+
+type RoomBaseResponse struct {
+	Code int               `json:"code"`
+	Msg  string            `json:"msg`
+	Data map[string]string `json:data,omitempty`
 }
 
 type UserLoginAdd struct {
@@ -19,24 +22,24 @@ type PicBaseReq struct {
 }
 
 type NewRoomAddReq struct {
-	Title        string
-	PicList      string
-	Position     string
-	Address      string
-	RoomType     string
-	IsElevator   int
-	Price        int
-	NearSubway   string
-	Area         float64
-	Floor        int
-	Plot         string
-	Supporting   []string
-	Description  string
-	ReleaseTime  string
-	PayType      string
-	ContactPhone string
-	ContactWx    string
-	CreatorId    int
+	Title        string   `json:title`
+	PicIdList    []string `json:picIdList`
+	Position     string   `json:position`
+	Address      string   `json:address`
+	RoomType     []int    `json:roomType`
+	IsElevator   int      `json:isElevator`
+	Price        int      `json:price`
+	NearSubway   string   `json:nearSubway`
+	Area         float64  `josn:area`
+	Floor        int      `json:floor`
+	Plot         string   `json:plot`
+	Supporting   []string `json:supporting`
+	Description  string   `json:description`
+	ReleaseTime  string   `json:releaseTime`
+	PayType      string   `json:payType`
+	ContactPhone string   `json:contactPhone`
+	ContactWx    string   `json:contactWx`
+	CreatorId    int      `json:creatorId`
 }
 
 type NewRoom struct {
