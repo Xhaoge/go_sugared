@@ -1,5 +1,7 @@
 package model
 
+import "honnef.co/go/tools/structlayout"
+
 // import "golang.org/x/tools/go/ssa/interp"
 
 type RoomBaseResponse struct {
@@ -67,3 +69,19 @@ type RoomInfo struct {
 	Description string
 	ReleaseTime string
 }
+
+
+type UserInfo	struct {
+	
+}
+
+type UserUpdate struct {
+	Id			string 	`json:id`
+	Username	string 	`json:username`
+	Password 	string	`json:password`
+	Phone 		string	`json:phone`
+	IsAdmin		string 	`json:isAdmin`
+	Description	string	`json:description`
+}
+
+
