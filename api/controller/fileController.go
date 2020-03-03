@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"api/model"
 	"api/utils"
 
 	"github.com/gin-gonic/gin"
@@ -51,18 +50,18 @@ func PicAdd(context *gin.Context) {
 
 func PicDelete(context *gin.Context) {
 	fmt.Println("file test delete")
-	var user model.PicBaseReq
-	err := context.ShouldBindJSON(&user)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println("id: ", user.Id)
-	fmt.Println("name: ", user.Username)
+	// var user model.PicBaseReq
+	// err := context.ShouldBindJSON(&user)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
+	// fmt.Println("id: ", user.Id)
+	// fmt.Println("name: ", user.Username)
 
-	context.JSON(200, gin.H{
-		"code": 201,
-		"msg":  "xxxxx",
-		"name": user.Username,
-	},
-	)
+	// context.JSON(200, gin.H{
+	// 	"code": 201,
+	// 	"msg":  "xxxxx",
+	// 	"name": user.Username,
+	// },
+	// )
 }

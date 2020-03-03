@@ -1,26 +1,17 @@
 package model
 
-import "honnef.co/go/tools/structlayout"
+// import "honnef.co/go/tools/structlayout"
 
 // import "golang.org/x/tools/go/ssa/interp"
 
 type RoomBaseResponse struct {
-	Code int               `json:"code"`
-	Msg  string            `json:"msg`
-	Data map[string]interface `json:data,omitempty`
+	Code int                    `json:"code"`
+	Msg  string                 `json:"msg`
+	Data map[string]interface{} `json:data,omitempty`
 }
 
 type UserLoginAdd struct {
 	Code string `json:"code`
-}
-
-type UserUpdate struct {
-	UserName string `json:"userName"`
-}
-
-type PicBaseReq struct {
-	Id       int    `json:"id"`
-	Username string `json:"username"`
 }
 
 type NewRoomAddReq struct {
@@ -70,18 +61,22 @@ type RoomInfo struct {
 	ReleaseTime string
 }
 
-
-type UserInfo	struct {
-	
+type UserInfo struct {
+	Id          string   `json:id`
+	OpenId      string   `json:openId`
+	Username    string   `json:username`
+	Password    string   `json:password`
+	Phone       string   `json:phone`
+	IsAdmin     string   `json:isAdmin`
+	ContainId   []string `json:containId`
+	Description string   `json:description`
 }
 
 type UserUpdate struct {
-	Id			string 	`json:id`
-	Username	string 	`json:username`
-	Password 	string	`json:password`
-	Phone 		string	`json:phone`
-	IsAdmin		string 	`json:isAdmin`
-	Description	string	`json:description`
+	Id          string `json:id`
+	Username    string `json:username`
+	Password    string `json:password`
+	Phone       string `json:phone`
+	IsAdmin     string `json:isAdmin`
+	Description string `json:description`
 }
-
-
