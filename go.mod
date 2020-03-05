@@ -1,4 +1,4 @@
-module api
+module go_sugared
 
 go 1.13
 
@@ -14,6 +14,6 @@ require (
 	golang.org/x/sys v0.0.0-20200219091948-cb0a6d8edb6c // indirect
 	golang.org/x/tools v0.0.0-20191130070609-6e064ea0cf2d
 	gopkg.in/go-playground/validator.v9 v9.31.0 // indirect
-	gopkg.in/yaml.v2 v2.2.8 // indirect
+	gopkg.in/yaml.v2 v2.2.8
 	honnef.co/go/tools v0.0.1-2020.1.3
 )
