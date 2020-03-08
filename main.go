@@ -1,8 +1,8 @@
 package main
 
 import (
-	"api/router"
 	"fmt"
+	"go_sugared/cmd"
 )
 
 func main() {
@@ -59,6 +59,7 @@ func main() {
 
 	// 指定地址和端口号
 	// r.Run(":8090")
-	router.Init()
+	// router.Init()
 	fmt.Println("let`go.....")
+	cmd.Init()
 }

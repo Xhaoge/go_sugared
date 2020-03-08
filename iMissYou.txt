@@ -7,9 +7,13 @@
 
 # 使用gin项目理解
     https://github.com/itcloudy/base-framework.git
+    https://studygolang.com/articles/21730  关键代码解析
 
 # gomod 使用导入本地项目包
     http://www.r9it.com/20190611/go-mod-use-dev-package.html#4-%E5%BC%95%E5%85%A5%E6%9C%AC%E5%9C%B0%E4%BE%9D%E8%B5%96%E5%8C%85
 
 # grpc 服务使用
     https://juejin.im/post/5d70e542f265da03a9505786
+
+golang github
+    https://github.com/eddycjy
