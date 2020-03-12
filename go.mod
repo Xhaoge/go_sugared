@@ -12,8 +12,7 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	golang.org/x/sys v0.0.0-20200219091948-cb0a6d8edb6c // indirect
-	golang.org/x/tools v0.0.0-20191130070609-6e064ea0cf2d
 	gopkg.in/go-playground/validator.v9 v9.31.0 // indirect
 	gopkg.in/yaml.v2 v2.2.8
-	honnef.co/go/tools v0.0.1-2020.1.3
+	honnef.co/go/tools v0.0.1-2020.1.3 // indirect
 )
