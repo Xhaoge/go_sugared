@@ -18,7 +18,7 @@ func InitRouter() *gin.Engine {
 }
 
 func addRoute(engine *gin.Engine) *gin.Engine {
-	apiRoom := engine.Group("/api/room")
+	apiRoom := engine.Group("hh/room")
 	{
 		//获取全部房源信息
 		apiRoom.GET("/get", room.GetRooms)
@@ -32,7 +32,7 @@ func addRoute(engine *gin.Engine) *gin.Engine {
 		apiRoom.POST("/delete", room.DeleteRooms)
 	}
 
-	apiPic := engine.Group("api/pic")
+	apiPic := engine.Group("hh/pic")
 	{
 		//test
 		apiPic.GET("/test", pic.Test)
@@ -42,7 +42,7 @@ func addRoute(engine *gin.Engine) *gin.Engine {
 		apiPic.POST("/delete", pic.DeletePic)
 	}
 
-	apiUser := engine.Group("api/user")
+	apiUser := engine.Group("hh/user")
 	{
 		//test
 		apiUser.GET("/test", user.Test)
@@ -54,7 +54,7 @@ func addRoute(engine *gin.Engine) *gin.Engine {
 
 	engine.GET("/test", func(c *gin.Context) {
 		CONF := config.Setting.Server.Port
-		fmt.Println("CONF port :",CONF)
+		fmt.Println("CONF port :", CONF)
 		c.JSON(200, gin.H{
 			"message": "test",
 		})

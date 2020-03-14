@@ -1,34 +1,29 @@
 package models
 
-import (
-	"fmt"
-	"gopkg.in/mgo.v2"
-)
-
 type WxUser struct {
 	Name     string `boson:"name"`
 	Password string `boson:"password"`
 }
 
-func InitMongo() {
-	mongo, err := mgo.Dial("")
-	defer mongo.Close()
-	if err != nil {
-		fmt.Println("connect mongo error：", err)
-	}
-	client := mongo.DB("hh").C("user")
-
-	// 创建数据
-	data := WxUser{
-		Name:     "xhaoge",
-		Password: "123456",
-	}
-	// 插入数据
-	cErr := client.Insert(&data)
-	if cErr != nil {
-		fmt.Println(cErr)
-	}
-}
+//func InitMongo() {
+//	mongo, err := mgo.Dial("")
+//	defer mongo.Close()
+//	if err != nil {
+//		fmt.Println("connect mongo error：", err)
+//	}
+//	client := mongo.DB("hh").C("user")
+//
+//	// 创建数据
+//	data := WxUser{
+//		Name:     "xhaoge",
+//		Password: "123456",
+//	}
+//	// 插入数据
+//	cErr := client.Insert(&data)
+//	if cErr != nil {
+//		fmt.Println(cErr)
+//	}
+//}
 
 // import "honnef.co/go/tools/structlayout"
 
