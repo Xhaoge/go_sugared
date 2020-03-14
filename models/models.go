@@ -1,4 +1,12 @@
-package model
+package models
+
+import (
+	"fmt"
+)
+
+func init() {
+	fmt.Println("models init")
+}
 
 // import "honnef.co/go/tools/structlayout"
 

@@ -1,28 +1,27 @@
-package controller
+package pic
 
 import (
 	"fmt"
 	"io/ioutil"
 
-	"api/utils"
-
 	"github.com/gin-gonic/gin"
+	"go_sugared/pkg/util"
 )
 
 const BASE_NAME = "E:/program/static/hh/photos"
 
-func Test(context *gin.Context) {
+func Test(c *gin.Context) {
 	fmt.Println("file test")
-	context.JSON(200, gin.H{
+	c.JSON(200, gin.H{
 		"code": 201,
 		"msg":  "xxxxx",
 	},
 	)
 }
 
-func PicAdd(context *gin.Context) {
+func AddPic(c *gin.Context) {
 	fmt.Println("file test add")
-	fh, err := context.FormFile("file")
+	fh, err := c.FormFile("file")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -32,23 +31,23 @@ func PicAdd(context *gin.Context) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fileName := utils.GetRandomStr(4) + "_" + utils.GetRandomStr(4) + ".jpg"
+	fileName := util.GetRandomStr(4) + "_" + util.GetRandomStr(4) + ".jpg"
 	fmt.Println("file path:", BASE_NAME+"/"+fileName)
 	err = ioutil.WriteFile(BASE_NAME+"/"+fileName, bytes, 0666)
 	if err != nil {
-		context.JSON(500, gin.H{
+		c.JSON(500, gin.H{
 			"code": 500,
 			"msg":  "fail",
 		})
 	} else {
-		context.JSON(200, gin.H{
+		c.JSON(200, gin.H{
 			"code": 200,
 			"msg":  "success",
 		})
 	}
 }
 
-func PicDelete(context *gin.Context) {
+func DeletePic(c *gin.Context) {
 	fmt.Println("file test delete")
 	// var user model.PicBaseReq
 	// err := context.ShouldBindJSON(&user)
