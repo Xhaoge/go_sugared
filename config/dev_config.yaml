@@ -4,7 +4,7 @@
 server:
   mode: debug # debug,release
   host: 0.0.0.0
-  port: 8000
+  port: 8090
   # token_expire_second: 360000
   # enable_https: false  # 后台开启https
   # cert_file: conf/https/cert.pem  # https对应的私钥

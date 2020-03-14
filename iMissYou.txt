@@ -5,6 +5,9 @@
     https://juejin.im/entry/5b8e7dd96fb9a019fe686623
 
 
+# 跟着煎鱼学go
+    https://eddycjy.gitbook.io/golang/
+
 # 使用gin项目理解
     https://github.com/itcloudy/base-framework.git
     https://studygolang.com/articles/21730  关键代码解析
@@ -17,9 +20,9 @@
 
 golang github
     https://github.com/eddycjy
-
     https://github.com/skyhee/gin-doc-cn  中文文档
 
+# gin
 gin.Default()：返回Gin的type Engine struct{...}，里面包含RouterGroup，相当于创建一个路由Handlers，可以后期绑定各类的路由规则和函数、中间件等
 router.GET(...){...}：创建不同的HTTP方法绑定到Handlers中，也支持POST、PUT、DELETE、PATCH、OPTIONS、HEAD 等常用的Restful方法
 gin.H{...}：就是一个map[string]interface{}

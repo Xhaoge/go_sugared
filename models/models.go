@@ -2,10 +2,32 @@ package models
 
 import (
 	"fmt"
+	"gopkg.in/mgo.v2"
 )
 
-func init() {
-	fmt.Println("models init")
+type WxUser struct{
+	Name 	string 		`boson:"name"`
+	Password 	string 	`boson:"password"`
+}
+
+func InitMongo(){
+	mongo, err := mgo.Dial("127.0,0,1")
+	defer mongo.Close()
+	if err != nil {
+		fmt.Println(err)
+	}
+	client := mongo.DB("hh").C("user")
+
+	// 创建数据
+	data := WxUser{
+		Name:"xhaoge",
+		Password:"123456",
+	}
+	// 插入数据
+	cErr := client.Insert(&data)
+	if cErr != nil {
+		fmt.Println(cErr)
+	}
 }
 
 // import "honnef.co/go/tools/structlayout"

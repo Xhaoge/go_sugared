@@ -3,6 +3,7 @@ package routers
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"go_sugared/config"
 	"go_sugared/routers/api/pic"
 	"go_sugared/routers/api/room"
 	"go_sugared/routers/api/user"
@@ -52,6 +53,8 @@ func addRoute(engine *gin.Engine) *gin.Engine {
 	}
 
 	engine.GET("/test", func(c *gin.Context) {
+		CONF := config.Setting.Server.Port
+		fmt.Println("CONF port :",CONF)
 		c.JSON(200, gin.H{
 			"message": "test",
 		})
