@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"os"
 	"path"
-
 )
 
 var Setting *Conf
@@ -23,9 +22,9 @@ type serverModel struct {
 
 //LoadConfigInformation load config information for application
 func InitConfig() {
-	filepath,_ := os.Getwd()
-	fileFullPath := path.Join(filepath ,"\\go_sugared\\config\\dev_config.yaml")
-	fmt.Println("fileFullPath: ",fileFullPath)
+	filepath, _ := os.Getwd()
+	fileFullPath := path.Join(filepath, "\\config\\dev_config.yaml")
+	fmt.Println("fileFullPath: ", fileFullPath)
 	configData, err := ioutil.ReadFile(fileFullPath)
 	if err != nil {
 		fmt.Printf(" config file read failed: %s", err)
