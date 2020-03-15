@@ -12,11 +12,16 @@ var Setting *Conf
 
 type Conf struct {
 	Server *serverModel `yaml:"server"`
+	Mongo  *mongo       `yaml:"mongo"`
 }
 
 type serverModel struct {
 	Mode string `yaml:mode`
 	Host string `yaml:host`
+	Port string `yaml:port`
+}
+
+type mongo struct {
 	Port string `yaml:port`
 }
 

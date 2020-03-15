@@ -24,6 +24,11 @@ func GetRandomStr(num int) string {
 	return string(bytes)
 }
 
+// 生成packageNumber str
+func MakePackageNumber() string {
+	return GetRandomStr(9)
+}
+
 // 定义最基本格式返回；
 func MakeBaseResponse(code int) {
 	fmt.Println("test response")
