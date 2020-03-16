@@ -23,10 +23,7 @@ func main() {
 		Password: "12356",
 	}
 	// 插入数据
-	cErr := models.UserMgo.Insert(data1)
-	if cErr != nil {
-		fmt.Println(cErr)
-	}
+	models.InsertUser(&data1)
 
 	s.ListenAndServe()
 }

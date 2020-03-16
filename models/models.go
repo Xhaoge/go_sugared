@@ -1,29 +1,45 @@
 package models
 
+import (
+	"fmt"
+	"gopkg.in/mgo.v2"
+)
+
+var (
+	MgoSession *mgo.Session
+	UserMgo    *mgo.Collection
+)
+
 type WxUser struct {
 	Name     string `boson:"name"`
 	Password string `boson:"password"`
 }
 
-//func InitMongo() {
-//	mongo, err := mgo.Dial("")
-//	defer mongo.Close()
-//	if err != nil {
-//		fmt.Println("connect mongo error：", err)
-//	}
-//	client := mongo.DB("hh").C("user")
-//
-//	// 创建数据
-//	data := WxUser{
-//		Name:     "xhaoge",
-//		Password: "123456",
-//	}
-//	// 插入数据
-//	cErr := client.Insert(&data)
-//	if cErr != nil {
-//		fmt.Println(cErr)
-//	}
-//}
+func InitMongo() {
+	var err error
+	MgoSession, err = mgo.Dial("")
+	//defer mongo.Close()
+	if err != nil {
+		fmt.Println("connect mongo error：", err)
+	}
+
+}
+
+func ConnectUserMgo() *mgo.Collection {
+	UserMgo = MgoSession.DB("hh").C("user")
+	return UserMgo
+}
+
+func InsertUser(data *WxUser) {
+	uMgo := ConnectUserMgo()
+	err := uMgo.Insert(data)
+	if err != nil {
+		fmt.Println("insert user failed :", err)
+	} else {
+		fmt.Println("insert user success; ")
+	}
+
+}
 
 type UserLoginAdd struct {
 	Code string `json:"code"`

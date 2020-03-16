@@ -1,5 +1,16 @@
 package models
 
+import (
+	"gopkg.in/mgo.v2"
+)
+
+var RoomMgo *mgo.Collection
+
+func ConnectRoomMgo() *mgo.Collection {
+	RoomMgo = MgoSession.DB("hh").C("user")
+	return RoomMgo
+}
+
 type Room struct {
 	packageNumber string
 	UpdateTime    string
