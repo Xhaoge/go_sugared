@@ -22,8 +22,8 @@ func GetRoomDetail(c *gin.Context) {
 
 // 新增房源信息
 func AddRooms(c *gin.Context) {
-	fmt.Println("file test")
-	roomAddReq := &models.NewRoomAddReq{}
+	fmt.Println("add room")
+	roomAddReq := &models.Room{}
 	if err := c.BindJSON(&roomAddReq); err != nil {
 		data := &models.RoomBaseResponse{
 			Code: 500,
@@ -35,16 +35,16 @@ func AddRooms(c *gin.Context) {
 		// },
 		// )
 	} else {
-		fmt.Println("roomAddReq title: ", roomAddReq.Title)
-		fmt.Println("roomAddReq PicIdList: ", roomAddReq.PicIdList)
-		fmt.Println("roomAddReq Address: ", roomAddReq.Address)
-		fmt.Println("roomAddReq IsElevator: ", roomAddReq.IsElevator)
-		fmt.Println("roomAddReq ContactPhone: ", roomAddReq.ContactPhone)
-		fmt.Println("roomAddReq Supporting: ", roomAddReq.Supporting)
-		fmt.Println("roomAddReq Price: ", roomAddReq.Price)
+		fmt.Println("roomAddReq title: ", roomAddReq.RoomInfo.Title)
+		fmt.Println("roomAddReq PicIdList: ", roomAddReq.RoomInfo.PicIdList)
+		fmt.Println("roomAddReq Address: ", roomAddReq.RoomInfo.Address)
+		fmt.Println("roomAddReq IsElevator: ", roomAddReq.RoomInfo.IsElevator)
+		fmt.Println("roomAddReq ContactPhone: ", roomAddReq.Owner.ContactPhone)
+		fmt.Println("roomAddReq Supporting: ", roomAddReq.RoomInfo.Supporting)
+		fmt.Println("roomAddReq Price: ", roomAddReq.RoomInfo.Price)
 		data2 := &models.RoomBaseResponse{
 			Code: 200,
-			Msg:  "xingbuxingo "}
+			Msg:  "序列化成功!!!! "}
 		c.JSON(200, data2)
 
 		// return &model.RoomBaseResponse{

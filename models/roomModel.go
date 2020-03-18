@@ -12,11 +12,11 @@ func ConnectRoomMgo() *mgo.Collection {
 }
 
 type Room struct {
-	packageNumber string
-	UpdateTime    string
-	releaseTime   string
-	RoomInfo
-	Owner
+	PackageNumber string `json:"packageNumber,omitempty"`
+	UpdateTime    string `json:"updateTime,omitempty"`
+	ReleaseTime   string `json:"releaseTime,omitempty"`
+	RoomInfo      `json:"roomInfo"`
+	Owner         `json:"owner"`
 }
 
 type RoomInfo struct {
