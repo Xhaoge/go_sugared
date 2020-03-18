@@ -11,8 +11,8 @@ var (
 )
 
 type WxUser struct {
-	Name     string `boson:"name"`
-	Password string `boson:"password"`
+	Name     string `bson:"name"`
+	Password string `bson:"password"`
 }
 
 func InitMongo() {

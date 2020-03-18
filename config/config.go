@@ -44,3 +44,7 @@ func InitConfig() {
 	}
 	Setting = configApplication
 }
+
+func ConfigGetServicePort() string {
+	return Setting.Server.Port
+}

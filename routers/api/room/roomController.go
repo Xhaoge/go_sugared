@@ -35,13 +35,8 @@ func AddRooms(c *gin.Context) {
 		// },
 		// )
 	} else {
-		fmt.Println("roomAddReq title: ", roomAddReq.RoomInfo.Title)
-		fmt.Println("roomAddReq PicIdList: ", roomAddReq.RoomInfo.PicIdList)
-		fmt.Println("roomAddReq Address: ", roomAddReq.RoomInfo.Address)
-		fmt.Println("roomAddReq IsElevator: ", roomAddReq.RoomInfo.IsElevator)
-		fmt.Println("roomAddReq ContactPhone: ", roomAddReq.Owner.ContactPhone)
-		fmt.Println("roomAddReq Supporting: ", roomAddReq.RoomInfo.Supporting)
-		fmt.Println("roomAddReq Price: ", roomAddReq.RoomInfo.Price)
+		roomAddReq.ToPrint()
+		models.InsertRoom(roomAddReq)
 		data2 := &models.RoomBaseResponse{
 			Code: 200,
 			Msg:  "序列化成功!!!! "}
