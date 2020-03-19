@@ -24,6 +24,18 @@ func InitMongo() {
 	}
 
 }
+func connectMgo(db, collection string) (*mgo.Session, *mgo.Collection) {
+	ms := MgoSession.Copy()
+	conn := ms.DB(db).C(collection)
+	ms.SetMode(mgo.Monotonic, true)
+	return ms, conn
+}
+
+func Insert(db, collection string, doc interface{}) error {
+	ms, c := connectMgo(db, collection)
+	defer ms.Close()
+	return c.Insert(doc)
+}
 
 func ConnectUserMgo() *mgo.Collection {
 	UserMgo = MgoSession.DB("hh").C("user")

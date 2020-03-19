@@ -29,23 +29,16 @@ func AddRooms(c *gin.Context) {
 			Code: 500,
 			Msg:  "xingbuxingo "}
 		c.JSON(500, data)
-		// context.JSON(200, gin.H{
-		// 	"code": 500,
-		// 	"msg":  "roomadd err",
-		// },
-		// )
 	} else {
 		roomAddReq.ToPrint()
-		models.InsertRoom(roomAddReq)
+		err := models.Insert("hh", "room", roomAddReq)
+		if err != nil {
+			fmt.Println("insert err: ", err)
+		}
 		data2 := &models.RoomBaseResponse{
 			Code: 200,
-			Msg:  "序列化成功!!!! "}
+			Msg:  "插入数据成功； "}
 		c.JSON(200, data2)
-
-		// return &model.RoomBaseResponse{
-		// 	Code: 200,
-		// 	Msg:  "xingbuxingo ",
-		// }
 	}
 }
 
