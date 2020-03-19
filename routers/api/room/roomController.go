@@ -23,22 +23,30 @@ func GetRoomDetail(c *gin.Context) {
 // 新增房源信息
 func AddRooms(c *gin.Context) {
 	fmt.Println("add room")
-	roomAddReq := &models.Room{}
+	//ms,m := models.ConnectMgo("hh","room")
+	var roomAddReq models.OperateDB
+	roomAddReq = &models.Room{}
+	mgoobj := models.NewMgoObject(roomAddReq)
+
+	var data models.RoomBaseResponse
 	if err := c.BindJSON(&roomAddReq); err != nil {
-		data := &models.RoomBaseResponse{
-			Code: 500,
-			Msg:  "xingbuxingo "}
-		c.JSON(500, data)
+		data.Code = 500
+		data.Msg = "序列化失败，行不行哦！！！！"
 	} else {
-		roomAddReq.ToPrint()
-		err := models.Insert("hh", "room", roomAddReq)
-		if err != nil {
+		if err := mgoobj.Insert(); err != nil {
 			fmt.Println("insert err: ", err)
+			data.Code = 400
+			data.Msg = "insert room err!!!"
+		} else {
+			data.Code = 200
+			data.Msg = "insert room success"
 		}
-		data2 := &models.RoomBaseResponse{
-			Code: 200,
-			Msg:  "插入数据成功； "}
-		c.JSON(200, data2)
+		//err := models.Insert("hh", "room", roomAddReq)
+		//if err != nil {
+		//	fmt.Println("insert err: ", err)
+		//}
+
+		c.JSON(200, data)
 	}
 }
 

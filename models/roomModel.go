@@ -7,19 +7,22 @@ import (
 
 var RoomMgo *mgo.Collection
 
-func ConnectRoomMgo() *mgo.Collection {
+func connectRoomMgo() *mgo.Collection {
 	RoomMgo = MgoSession.DB("hh").C("room")
 	return RoomMgo
 }
 
-func InsertRoom(data *Room) {
-	rMo := ConnectRoomMgo()
-	rerr := rMo.Insert(&data)
-	if rerr != nil {
-		fmt.Println("insert room failed :", rerr)
-	} else {
-		fmt.Println("insert room success; ")
-	}
+//func InsertRoom(data *Room) {
+//	rMo := ConnectRoomMgo()
+//	rerr := rMo.Insert(&data)
+//	if rerr != nil {
+//		fmt.Println("insert room failed :", rerr)
+//	} else {
+//		fmt.Println("insert room success; ")
+//	}
+//}
+
+func GetRoomDetail() {
 
 }
 
@@ -30,6 +33,12 @@ type Room struct {
 	RoomInfo      `json:"roomInfo",bson:"roomInfo"`
 	Owner         `json:"owner",bson:"owner"`
 }
+
+//func (doc *Room)Insert() error {
+//	ms := connectRoomMgo()
+//	defer MgoSession.Close()
+//	return ms.Insert(doc)
+//}
 
 type RoomInfo struct {
 	Title       string   `json:"title",bson:"title"`
