@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"go_sugared/models"
+	"go_sugared/routers/api"
 )
 
 // 获取全部房源信息
@@ -24,9 +25,9 @@ func GetRoomDetail(c *gin.Context) {
 func AddRooms(c *gin.Context) {
 	fmt.Println("add room")
 	//ms,m := models.ConnectMgo("hh","room")
-	var roomAddReq models.OperateDB
+	var roomAddReq api.OperateDB
 	roomAddReq = &models.Room{}
-	mgoobj := models.NewMgoObject(roomAddReq)
+	mgoobj := api.NewMgoObject(roomAddReq)
 
 	var data models.RoomBaseResponse
 	if err := c.BindJSON(&roomAddReq); err != nil {
@@ -41,11 +42,6 @@ func AddRooms(c *gin.Context) {
 			data.Code = 200
 			data.Msg = "insert room success"
 		}
-		//err := models.Insert("hh", "room", roomAddReq)
-		//if err != nil {
-		//	fmt.Println("insert err: ", err)
-		//}
-
 		c.JSON(200, data)
 	}
 }

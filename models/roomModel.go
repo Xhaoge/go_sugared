@@ -12,18 +12,16 @@ func connectRoomMgo() *mgo.Collection {
 	return RoomMgo
 }
 
-//func InsertRoom(data *Room) {
-//	rMo := ConnectRoomMgo()
-//	rerr := rMo.Insert(&data)
-//	if rerr != nil {
-//		fmt.Println("insert room failed :", rerr)
-//	} else {
-//		fmt.Println("insert room success; ")
-//	}
-//}
+func (rdb *Room) Insert() error {
+	ms, c := connectMgo("hh", "room")
+	defer ms.Close()
+	return c.Insert(rdb)
+}
 
-func GetRoomDetail() {
-
+func (rdb *Room) Delete() error {
+	ms, c := connectMgo("hh", "room")
+	defer ms.Close()
+	return c.Insert(rdb)
 }
 
 type Room struct {
@@ -33,12 +31,6 @@ type Room struct {
 	RoomInfo      `json:"roomInfo",bson:"roomInfo"`
 	Owner         `json:"owner",bson:"owner"`
 }
-
-//func (doc *Room)Insert() error {
-//	ms := connectRoomMgo()
-//	defer MgoSession.Close()
-//	return ms.Insert(doc)
-//}
 
 type RoomInfo struct {
 	Title       string   `json:"title",bson:"title"`
