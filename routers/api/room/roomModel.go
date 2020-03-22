@@ -9,8 +9,8 @@ type Room struct {
 	PackageNumber string `json:"packageNumber,omitempty",bson:"packageNumber"`
 	UpdateTime    string `json:"updateTime,omitempty",bson:"updateTime"`
 	ReleaseTime   string `json:"releaseTime,omitempty",bson:"releaseTime"`
-	IsValid       bool   `json:"roomInfo",bson:"roomInfo"`
-	ReadNum       int    `json:"roomInfo",bson:"roomInfo"`
+	Isinvalid     bool   `json:"isInvalid",bson:"isInvalid"`
+	ReadNum       int    `json:"readNum",bson:"readNum"`
 	RoomInfo      `json:"roomInfo",bson:"roomInfo"`
 	Owner         `json:"owner",bson:"owner"`
 }
@@ -37,4 +37,9 @@ type Owner struct {
 	CreatorId    string `json:"creatorId",bson:"creatorId"`
 	ContactPhone string `json:"contactPhone,omitempty",bson:"contactPhone"`
 	ContactWx    string `json:"contactWx,omitempty",bson:"contactWx"`
+}
+
+type DeleteRoomReq struct {
+	PackageNumber string `json:"packageNumber"`
+	IsInvalid     bool   `json:"isInvalid,omitempty"`
 }

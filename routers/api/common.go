@@ -20,6 +20,13 @@ func InitMongo() {
 
 }
 
+func connect(db, collection string) (*mgo.Session, *mgo.Collection) {
+	ms := MgoSession.Copy()
+	c := ms.DB(db).C(collection)
+	ms.SetMode(mgo.Monotonic, true)
+	return ms, c
+}
+
 type BaseResponse struct {
 	Code int    `json:"code"`
 	Msg  string `json:"msg"`
@@ -35,4 +42,17 @@ func ApiResponse(c *gin.Context, code int, msg string) {
 		Code: code,
 		Msg:  msg}
 	c.JSON(200, data)
+}
+
+// 数据库操作封装
+func FindOneBySelector(db, collectin string, query, selector, res interface{}) error {
+	ms, c := connect(db, collectin)
+	defer ms.Close()
+	return c.Find(query).Select(selector).One(&res)
+}
+
+func FindAllBySelector(db, collectin string, query, selector, result interface{}) error {
+	ms, c := connect(db, collectin)
+	defer ms.Close()
+	return c.Find(query).Select(selector).All(result)
 }
