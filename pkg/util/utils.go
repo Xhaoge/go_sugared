@@ -1,15 +1,8 @@
 package util
 
 import (
-	"fmt"
 	"math/rand"
 )
-
-// var (
-// 	WorkSpace  string // config
-// 	ServerInfo *serverModel
-// 	ConfigInfo *configMoudle
-// )
 
 // 随机生成str 返回
 func GetRandomStr(num int) string {
@@ -29,7 +22,7 @@ func MakePackageNumber() string {
 	return GetRandomStr(9)
 }
 
-// 定义最基本格式返回；
-func MakeBaseResponse(code int) {
-	fmt.Println("test response")
+// 返回time 时间格式方便保存入库
+func GetTime() {
+
 }

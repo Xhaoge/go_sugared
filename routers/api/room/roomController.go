@@ -3,12 +3,11 @@ package room
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"go_sugared/models"
 	"go_sugared/routers/api"
 )
 
 // 获取全部房源信息
-func GetRooms(c *gin.Context) {
+func GetRoomIndex(c *gin.Context) {
 }
 
 // 获取具体房源信息
@@ -22,34 +21,26 @@ func GetRoomDetail(c *gin.Context) {
 }
 
 // 新增房源信息
-func AddRooms(c *gin.Context) {
+func AddRoom(c *gin.Context) {
 	fmt.Println("add room")
-	//ms,m := models.ConnectMgo("hh","room")
-	var roomAddReq api.OperateDB
-	roomAddReq = &models.Room{}
-	mgoobj := api.NewMgoObject(roomAddReq)
-
-	var data models.RoomBaseResponse
+	roomAddReq := &Room{}
 	if err := c.BindJSON(&roomAddReq); err != nil {
-		data.Code = 500
-		data.Msg = "序列化失败，行不行哦！！！！"
+		api.ApiResponse(c, 400, "request param error....")
 	} else {
-		if err := mgoobj.Insert(); err != nil {
+		roomAddReq.ToPrint()
+		if err := roomAddReq.Insert(); err != nil {
 			fmt.Println("insert err: ", err)
-			data.Code = 400
-			data.Msg = "insert room err!!!"
+			api.ApiResponse(c, 500, "insert room error....")
 		} else {
-			data.Code = 200
-			data.Msg = "insert room success"
+			api.ApiResponse(c, 200, "insert room sucess....")
 		}
-		c.JSON(200, data)
 	}
 }
 
 // 编辑房源信息
-func UpdateRooms(c *gin.Context) {
+func UpdateRoom(c *gin.Context) {
 }
 
 // 删除房源信息
-func DeleteRooms(c *gin.Context) {
+func DeleteRoom(c *gin.Context) {
 }

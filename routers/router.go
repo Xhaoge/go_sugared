@@ -14,22 +14,22 @@ func InitRouter() *gin.Engine {
 	gin.SetMode("debug")
 	engine := gin.New()
 	engine.Use(gin.Logger(), gin.Recovery())
-	return addRoute(engine)
+	return apiRoute(engine)
 }
 
-func addRoute(engine *gin.Engine) *gin.Engine {
+func apiRoute(engine *gin.Engine) *gin.Engine {
 	apiRoom := engine.Group("hh/room")
 	{
 		//获取全部房源信息
-		apiRoom.GET("/get", room.GetRooms)
+		apiRoom.GET("/get", room.GetRoomIndex)
 		//获取具体房源信息
 		apiRoom.POST("/getDetail", room.GetRoomDetail)
 		//新增房源信息
-		apiRoom.POST("/add", room.AddRooms)
+		apiRoom.POST("/add", room.AddRoom)
 		//编辑房源信息
-		apiRoom.POST("/update", room.UpdateRooms)
+		apiRoom.POST("/update", room.UpdateRoom)
 		//删除房源信息
-		apiRoom.POST("/delete", room.DeleteRooms)
+		apiRoom.POST("/delete", room.DeleteRoom)
 	}
 
 	apiPic := engine.Group("hh/pic")
