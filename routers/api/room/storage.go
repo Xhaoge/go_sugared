@@ -1,7 +1,7 @@
 package room
 
 import (
-	"go_sugared/pkg/util"
+	"fmt"
 	"go_sugared/routers/api"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -16,14 +16,13 @@ func connectRoomMgo(db, cl string) *mgo.Collection {
 func (doc *Room) Insert() error {
 	c := connectRoomMgo("hh", "room")
 	//defer api.MgoSession.Close()
-	doc.PackageNumber = util.MakePackageNumber()
 	return c.Insert(doc)
 }
 
-func (doc *DeleteRoomReq) Delete() error {
+func (singleDoc *SingleRoomReq) Delete() error {
 	c := connectRoomMgo("hh", "room")
 	//defer api.MgoSession.Close()
-	return c.Insert(doc)
+	return c.Remove(bson.M{"packagenumber": singleDoc.PackageNumber})
 }
 
 func FindOneRoomByPackageNumber(pkg string) (interface{}, error) {
@@ -32,15 +31,22 @@ func FindOneRoomByPackageNumber(pkg string) (interface{}, error) {
 	c := connectRoomMgo("hh", "room")
 	err = c.Find(bson.M{"packagenumber": pkg}).Select(bson.M{"_id": 0}).One(&result)
 	if err != nil {
-		return nil,err
+		return nil, err
 	}
-	return result,nil
+	return result, nil
 }
 
 func findOneBySelector() {
-
+	fmt.Println("findonebyselector....")
 }
 
-func findAllBySelector() {
-
+func findAllRoomBySelector() ([]Room, error) {
+	var result []Room
+	var err error
+	c := connectRoomMgo("hh", "room")
+	err = c.Find(nil).All(&result)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
 }

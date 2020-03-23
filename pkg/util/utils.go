@@ -2,6 +2,7 @@ package util
 
 import (
 	"math/rand"
+	"time"
 )
 
 // 随机生成str 返回
@@ -10,6 +11,7 @@ func GetRandomStr(num int) string {
 	strNum := "01234567890"
 	allStr := strNum + strLetter
 	bytes := make([]byte, num)
+	rand.Seed(time.Now().Unix())
 	for i := 0; i < num; i++ {
 		n := rand.Intn(36)
 		bytes[i] = allStr[n]

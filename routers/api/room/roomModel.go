@@ -39,7 +39,13 @@ type Owner struct {
 	ContactWx    string `json:"contactWx,omitempty",bson:"contactWx"`
 }
 
-type DeleteRoomReq struct {
+type SingleRoomReq struct {
 	PackageNumber string `json:"packageNumber"`
 	IsInvalid     bool   `json:"isInvalid,omitempty"`
+}
+
+type GetRoomList struct {
+	Code int
+	Msg  string
+	Data []Room
 }
