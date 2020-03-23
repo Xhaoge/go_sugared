@@ -18,7 +18,7 @@ func GetRoomDetail(c *gin.Context) {
 		api.ApiResponse(c, 500, "request param error!!!")
 	} else {
 		fmt.Println("request pkg: ", getreq)
-		err, res := FindOneRoomByPackageNumber(getreq.PackageNumber)
+		res,err := FindOneRoomByPackageNumber(getreq.PackageNumber)
 		if err != nil {
 			fmt.Println("find err: ", err)
 		}
