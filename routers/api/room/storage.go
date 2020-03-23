@@ -26,10 +26,15 @@ func (doc *DeleteRoomReq) Delete() error {
 	return c.Insert(doc)
 }
 
-func FindOneRoomByPackageNumber(pkg string) (error, *Room) {
-	result := &Room{}
-	err := api.FindOneBySelector("hh", "room", bson.M{"packagenumber": pkg}, bson.M{"_id": 0}, &result)
-	return err, result
+func FindOneRoomByPackageNumber(pkg string) (error, interface{}) {
+	var result Room
+	var err error
+	c := connectRoomMgo("hh", "room")
+	err = c.Find(bson.M{"packagenumber": pkg}).Select(bson.M{"_id": 0}).One(&result)
+	if err != nil {
+		return err, nil
+	}
+	return nil, result
 }
 
 func findOneBySelector() {

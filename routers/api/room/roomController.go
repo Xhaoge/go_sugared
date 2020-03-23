@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"go_sugared/routers/api"
-	"gopkg.in/mgo.v2/bson"
 )
 
 // 获取全部房源信息
@@ -19,19 +18,11 @@ func GetRoomDetail(c *gin.Context) {
 		api.ApiResponse(c, 500, "request param error!!!")
 	} else {
 		fmt.Println("request pkg: ", getreq)
-		res := &Room{}
-		c := connectRoomMgo("hh", "room")
-		err := c.Find(bson.M{"packagenumber": getreq.PackageNumber}).Select(bson.M{"_id": 0}).One(&res)
+		err, res := FindOneRoomByPackageNumber(getreq.PackageNumber)
 		if err != nil {
-			fmt.Println("err : ", err)
-		}
-		fmt.Println("res: ", res)
-		err, res1 := FindOneRoomByPackageNumber(getreq.PackageNumber)
-		if err != nil {
-			//fmt.Println("res :: ",res)
 			fmt.Println("find err: ", err)
 		}
-		fmt.Println("res1: ", res1)
+		fmt.Println("res1: ", res)
 	}
 
 }
