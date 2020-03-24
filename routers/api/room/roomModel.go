@@ -40,8 +40,9 @@ type Owner struct {
 }
 
 type SingleRoomReq struct {
-	PackageNumber string `json:"packageNumber"`
+	PackageNumber string `json:"packageNumber,omitempty"`
 	IsInvalid     bool   `json:"isInvalid,omitempty"`
+	NearSubway    string `json:"nearSubway, omitempty"`
 }
 
 type GetRoomList struct {
