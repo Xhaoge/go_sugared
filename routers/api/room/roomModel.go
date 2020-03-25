@@ -41,8 +41,9 @@ type Owner struct {
 
 type SingleRoomReq struct {
 	PackageNumber string `json:"packageNumber,omitempty"`
-	IsInvalid     bool   `json:"isInvalid,omitempty"`
-	NearSubway    string `json:"nearSubway, omitempty"`
+	IsInvalid     bool   `json:"isInvalid,omitempty"`   // 是否已失效
+	NearSubway    string `json:"nearSubway, omitempty"` // 临近地铁
+	PriceSort     int    `json:"priceSort, omitempty"`  // 价格排序，0 是默认排序，1 是由高到低，-1是由低到高；
 }
 
 type GetRoomList struct {

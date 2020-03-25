@@ -48,12 +48,12 @@ func findAllBySelector(s SingleRoomReq) {
 }
 
 func MakeSelector(s SingleRoomReq) interface{} {
-	selector := bson.M{}
+	selector := bson.M{"isinvalid": false}
 	if s.NearSubway != "" {
-		selector["nearsubway"] = s.NearSubway
+		selector["roominfo.nearsubway"] = s.NearSubway
 	}
 	if s.IsInvalid {
-		selector["isinvalid"] = false
+		selector["isinvalid"] = true
 	}
 	fmt.Println("selector: ", selector)
 	return selector

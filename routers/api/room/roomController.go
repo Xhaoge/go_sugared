@@ -77,8 +77,6 @@ func GetRoomDetail(c *gin.Context) {
 	//}
 }
 
-// 获取具体房源信息 通过NearSubway
-
 // 获取全部房源信息
 func GetRoomIndex(c *gin.Context) {
 	fmt.Println("get all room list....")
