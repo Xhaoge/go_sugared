@@ -52,7 +52,7 @@ func GetRoomDetail(c *gin.Context) {
 		fmt.Println("request: ", getreq)
 		req := MakeSelector(*getreq)
 		var res []Room
-		err := FindAll("hh", "room", req, bson.M{"_id": 0}, &res)
+		err := api.FindAllBySelector("hh", "room", req, bson.M{"_id": 0}, &res)
 		if err != nil {
 			fmt.Println("err: ", err)
 		} else {
@@ -82,7 +82,7 @@ func GetRoomIndex(c *gin.Context) {
 	fmt.Println("get all room list....")
 	//res, err := findAllRoomBySelector()
 	var res []Room
-	err := FindAll("hh", "room", nil, bson.M{"_id": 0}, &res)
+	err := api.FindAllBySelector("hh", "room", nil, bson.M{"_id": 0}, &res)
 	if err != nil {
 		fmt.Println("find all err: ", err)
 		api.ApiResponse(c, 500, "find all room error....")

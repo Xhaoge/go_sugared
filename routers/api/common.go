@@ -45,17 +45,14 @@ func ApiResponse(c *gin.Context, code int, msg string) {
 }
 
 // 数据库操作封装
-func FindOneBySelector(db, collectin string, query, selector, res interface{}) (interface{}, error) {
-	ms, c := connect(db, collectin)
-	defer ms.Close()
-	if err := c.Find(query).Select(selector).One(&res); err != nil {
-		return nil, err
-	}
-	return res, nil
+func FindOneBySelector(db, collectin string, query, selector, res interface{}) error {
+	_, c := connect(db, collectin)
+	//defer ms.Close()
+	return c.Find(query).Select(selector).One(&res)
 }
 
 func FindAllBySelector(db, collectin string, query, selector, result interface{}) error {
-	ms, c := connect(db, collectin)
-	defer ms.Close()
+	_, c := connect(db, collectin)
+	//defer ms.Close()
 	return c.Find(query).Select(selector).All(result)
 }

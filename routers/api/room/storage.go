@@ -36,24 +36,17 @@ func FindOneRoomByPackageNumber(pkg string) (interface{}, error) {
 	return result, nil
 }
 
-func findAllBySelector(s SingleRoomReq) {
-	fmt.Println("findonebyselector....")
-
-	//var result []Room
-	//var err error
-	//c := connectRoomMgo("hh", "room")
-	//if s.PackageNumber != ""{
-	//	err = c.Find(bson.M{"packagenumber": s.PackageNumber}).Select(bson.M{"_id": 0}).One(&result)
-	//}
-}
-
 func MakeSelector(s SingleRoomReq) interface{} {
 	selector := bson.M{"isinvalid": false}
-	if s.NearSubway != "" {
-		selector["roominfo.nearsubway"] = s.NearSubway
-	}
-	if s.IsInvalid {
-		selector["isinvalid"] = true
+	if s.PackageNumber != "" {
+		selector["packagenumber"] = s.NearSubway
+	} else {
+		if s.NearSubway != "" {
+			selector["roominfo.nearsubway"] = s.NearSubway
+		}
+		if s.IsInvalid {
+			selector["isinvalid"] = true
+		}
 	}
 	fmt.Println("selector: ", selector)
 	return selector
@@ -68,16 +61,4 @@ func findAllRoomBySelector() ([]Room, error) {
 		return nil, err
 	}
 	return result, nil
-}
-
-func FindAll(db, collection string, query, selector, result interface{}) error {
-	c := connectRoomMgo(db, collection)
-	//defer ms.Close()
-	return c.Find(query).Select(selector).All(result)
-}
-
-func FindOne(db, collection string, query, selector, result interface{}) error {
-	c := connectRoomMgo(db, collection)
-	//defer ms.Close()
-	return c.Find(query).Select(selector).All(result)
 }
