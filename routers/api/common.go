@@ -32,16 +32,26 @@ type BaseResponse struct {
 	Msg  string `json:"msg"`
 }
 
-type RoomBaseResponse struct {
-	BaseResponse
-	Data map[string]interface{} `json:"data,omitempty"`
+type DataResponse struct {
+	Code int         `json:"code"`
+	Msg  string      `json:"msg"`
+	Data interface{} `json:"data"`
 }
 
-func ApiResponse(c *gin.Context, code int, msg string) {
+func ApiBaseResponse(c *gin.Context, code int, msg string) {
 	data := BaseResponse{
 		Code: code,
 		Msg:  msg}
 	c.JSON(200, data)
+}
+
+func ApiDataResponse(c *gin.Context, code int, msg string, data interface{}) {
+	res := DataResponse{
+		Code: code,
+		Msg:  msg,
+		Data: data}
+	c.JSON(200, res)
+
 }
 
 // 数据库操作封装

@@ -39,7 +39,7 @@ func FindOneRoomByPackageNumber(pkg string) (interface{}, error) {
 func MakeSelector(s SingleRoomReq) interface{} {
 	selector := bson.M{"isinvalid": false}
 	if s.PackageNumber != "" {
-		selector["packagenumber"] = s.NearSubway
+		selector["packagenumber"] = s.PackageNumber
 	} else {
 		if s.NearSubway != "" {
 			selector["roominfo.nearsubway"] = s.NearSubway
@@ -50,15 +50,4 @@ func MakeSelector(s SingleRoomReq) interface{} {
 	}
 	fmt.Println("selector: ", selector)
 	return selector
-}
-
-func findAllRoomBySelector() ([]Room, error) {
-	var result []Room
-	var err error
-	c := connectRoomMgo("hh", "room")
-	err = c.Find(nil).All(&result)
-	if err != nil {
-		return nil, err
-	}
-	return result, nil
 }
