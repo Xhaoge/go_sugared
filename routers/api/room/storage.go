@@ -25,7 +25,7 @@ func (singleDoc *SingleRoomReq) Delete() error {
 	return c.Remove(bson.M{"packagenumber": singleDoc.PackageNumber})
 }
 
-func FindOneRoomByPackageNumber(pkg string) (interface{}, error) {
+func FindOneRoomByPackageNumber(pkg string) (*Room, error) {
 	var result Room
 	var err error
 	c := connectRoomMgo("hh", "room")
@@ -33,28 +33,7 @@ func FindOneRoomByPackageNumber(pkg string) (interface{}, error) {
 	if err != nil {
 		return nil, err
 	}
-	return result, nil
-}
-
-func MakeSelector(s SingleRoomReq) interface{} {
-	selector := bson.M{"isinvalid": false}
-	if s.PackageNumber != "" {
-		selector["packagenumber"] = s.PackageNumber
-	} else {
-		if s.NearSubway != "" {
-			selector["roominfo.nearsubway"] = s.NearSubway
-		}
-		if s.IsInvalid {
-			selector["isinvalid"] = true
-		}
-	}
-	fmt.Println("selector: ", selector)
-	return selector
-}
-
-func MakeRoomUpdate(m Room) interface{} {
-	update := bson.M{"$set": bson.M{"roominfo": m.RoomInfo, "owner": m.Owner}}
-	return update
+	return &result, nil
 }
 
 func findAllRoomBySelector() ([]Room, error) {
@@ -68,15 +47,36 @@ func findAllRoomBySelector() ([]Room, error) {
 	return result, nil
 }
 
-func UpdateRoomBySelector(db, collectin string, query, update interface{}, result Room) (interface{}, error) {
+func UpdateRoomBySelector(db, collectin string, update interface{}, pkg string) (interface{}, error) {
+	query := bson.M{"packagenumber": pkg}
 	err := api.UpdateBySelector(db, collectin, query, update)
 	if err != nil {
 		return nil, err
 	}
-	res, err := FindOneRoomByPackageNumber(result.PackageNumber)
+	res, err := FindOneRoomByPackageNumber(pkg)
 	if err != nil {
 		return nil, err
 	}
 	return res, nil
+}
 
+func MakeSelector(s SingleRoomReq) interface{} {
+	selector := bson.M{"isinvalid": false}
+	if s.PackageNumber != "" {
+		selector["packagenumber"] = s.PackageNumber
+	}
+	if s.NearSubway != "" {
+		selector["roominfo.nearsubway"] = s.NearSubway
+	}
+	if s.IsInvalid {
+		selector["isinvalid"] = true
+	}
+
+	fmt.Println("selector: ", selector)
+	return selector
+}
+
+func MakeRoomUpdate(m Room) interface{} {
+	update := bson.M{"$set": bson.M{"roominfo": m.RoomInfo, "owner": m.Owner}}
+	return update
 }
