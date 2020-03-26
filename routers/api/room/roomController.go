@@ -42,6 +42,20 @@ func DeleteRoom(c *gin.Context) {
 	}
 }
 
+// 编辑房源信息
+func UpdateRoom(c *gin.Context) {
+	c.JSON(200, "helle, world...")
+	roomUpdateReq := &Room{}
+	if err := c.BindJSON(&roomUpdateReq); err != nil {
+		api.ApiResponse(c, 400, "request param error....")
+	} else {
+		roomUpdateRes := &Room{}
+		update := MakeRoomUpdate(*roomUpdateReq)
+		res, _ := UpdateRoomBySelector("hh", "room", bson.M{"packagenumber": roomUpdateReq.PackageNumber}, update, *roomUpdateRes)
+		c.JSON(200, res)
+	}
+}
+
 // 获取具体房源信息 通过packagenumber
 func GetRoomDetail(c *gin.Context) {
 	fmt.Println("get room detail")
@@ -93,9 +107,4 @@ func GetRoomIndex(c *gin.Context) {
 			Data: res,
 		})
 	}
-}
-
-// 编辑房源信息
-func UpdateRoom(c *gin.Context) {
-	c.JSON(200, "helle, world...")
 }
