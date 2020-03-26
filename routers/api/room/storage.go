@@ -51,3 +51,32 @@ func MakeSelector(s SingleRoomReq) interface{} {
 	fmt.Println("selector: ", selector)
 	return selector
 }
+
+func MakeRoomUpdate(m Room) interface{} {
+	update := bson.M{"$set": bson.M{"roominfo": m.RoomInfo, "owner": m.Owner}}
+	return update
+}
+
+func findAllRoomBySelector() ([]Room, error) {
+	var result []Room
+	var err error
+	c := connectRoomMgo("hh", "room")
+	err = c.Find(nil).All(&result)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+func UpdateRoomBySelector(db, collectin string, query, update interface{}, result Room) (interface{}, error) {
+	err := api.UpdateBySelector(db, collectin, query, update)
+	if err != nil {
+		return nil, err
+	}
+	res, err := FindOneRoomByPackageNumber(result.PackageNumber)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+
+}
