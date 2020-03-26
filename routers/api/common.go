@@ -56,3 +56,10 @@ func FindAllBySelector(db, collectin string, query, selector, result interface{}
 	//defer ms.Close()
 	return c.Find(query).Select(selector).All(result)
 }
+
+func UpdateBySelector(db, collectin string, query, update interface{}) error {
+	_, c := connect(db, collectin)
+	//defer ms.Close()
+	return c.Update(query, update)
+
+}

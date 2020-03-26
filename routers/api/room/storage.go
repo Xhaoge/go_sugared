@@ -62,3 +62,11 @@ func findAllRoomBySelector() ([]Room, error) {
 	}
 	return result, nil
 }
+
+func UpdateRoomBySelector(db, collectin string, query, update interface{}, result Room) error {
+	err := api.UpdateBySelector(db, collectin, query, update)
+	if err != nil {
+		return err
+	}
+
+}
