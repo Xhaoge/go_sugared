@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"go_sugared/config"
+	"go_sugared/pkg/logging"
 	"go_sugared/routers"
 	"go_sugared/routers/api"
 	"net/http"
@@ -11,6 +12,7 @@ import (
 func main() {
 	fmt.Println("go sugared running.............")
 	config.InitConfig()
+	logging.Debug("this is debug log....")
 	router := routers.InitRouter()
 	api.InitMongo()
 	s := &http.Server{

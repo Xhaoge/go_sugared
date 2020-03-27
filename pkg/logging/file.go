@@ -2,20 +2,22 @@ package logging
 
 import (
 	"fmt"
+	"go_sugared/config"
 	"log"
 	"os"
 	"time"
 )
 
 var (
-	LogSavePath = "runtime/logs/"
+	LogSavePath = "F:/Program/log/go_segared/"
 	LogSaveName = "log"
 	LogFileExt  = "log"
 	TimeFormat  = "20200315165345"
 )
 
 func getLogFilePath() string {
-	return fmt.Sprintf("%s", LogSavePath)
+	dd := config.ConfigGetLoggingFilePath()
+	return fmt.Sprintf("%s", dd)
 }
 
 func getLogFileFullPath() string {
@@ -41,7 +43,10 @@ func openLogFile(filePath string) *os.File {
 
 func mlDir() {
 	dir, _ := os.Getwd()
-	err := os.MkdirAll(dir+"/"+getLogFilePath(), os.ModePerm)
+	fmt.Println("dir: ", dir)
+	dd := config.ConfigGetLoggingFilePath()
+	fmt.Println("dd:", dd)
+	err := os.MkdirAll(dd, os.ModePerm)
 	if err != nil {
 		panic(err)
 	}

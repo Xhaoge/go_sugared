@@ -13,6 +13,7 @@ var Setting *Conf
 type Conf struct {
 	Server *serverModel `yaml:"server"`
 	Mongo  *mongo       `yaml:"mongo"`
+	Log    *log         `yaml:"log"`
 }
 
 type serverModel struct {
@@ -23,6 +24,10 @@ type serverModel struct {
 
 type mongo struct {
 	Port string `yaml:port`
+}
+
+type log struct {
+	FilePath string `yaml:filePath`
 }
 
 //LoadConfigInformation load config information for application
@@ -47,4 +52,9 @@ func InitConfig() {
 
 func ConfigGetServicePort() string {
 	return Setting.Server.Port
+}
+
+func ConfigGetLoggingFilePath() string {
+	fmt.Println("filepath:", Setting.Log.FilePath)
+	return Setting.Log.FilePath
 }
