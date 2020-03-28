@@ -5,6 +5,7 @@ import (
 	"go_sugared/routers/api"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"time"
 )
 
 // 数据库相关操作
@@ -77,6 +78,7 @@ func MakeSelector(s SingleRoomReq) interface{} {
 }
 
 func MakeRoomUpdate(m Room) interface{} {
-	update := bson.M{"$set": bson.M{"roominfo": m.RoomInfo, "owner": m.Owner}}
+	newTime := time.Now()
+	update := bson.M{"$set": bson.M{"updatetime": newTime, "roominfo": m.RoomInfo, "owner": m.Owner}}
 	return update
 }

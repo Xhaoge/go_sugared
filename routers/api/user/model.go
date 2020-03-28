@@ -35,8 +35,15 @@ func Insert(db, collection string, doc interface{}) error {
 	return c.Insert(doc)
 }
 
-type UserLoginAdd struct {
+type wxLoginReq struct {
 	Code string `json:"code"`
+}
+
+type toWxLogin struct {
+	appid      string
+	secret     string
+	js_code    string
+	grant_type string
 }
 
 type UserInfo struct {
