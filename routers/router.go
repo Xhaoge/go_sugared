@@ -53,7 +53,7 @@ func apiRoute(engine *gin.Engine) *gin.Engine {
 	}
 
 	engine.GET("/test", func(c *gin.Context) {
-		CONF := config.Setting.Server.Port
+		CONF := config.ConfigGetServicePort()
 		fmt.Println("CONF port :", CONF)
 		c.JSON(200, gin.H{
 			"message": "test",

@@ -9,15 +9,14 @@ import (
 )
 
 var (
-	LogSavePath = "F:/Program/log/go_segared/"
-	LogSaveName = "log"
+	LogSaveName = "go_sugared"
 	LogFileExt  = "log"
-	TimeFormat  = "20200315165345"
+	TimeFormat  = "202003151653"
 )
 
 func getLogFilePath() string {
-	dd := config.ConfigGetLoggingFilePath()
-	return fmt.Sprintf("%s", dd)
+	logfile := config.ConfigGetLoggingFilePath()
+	return fmt.Sprintf("%s", logfile)
 }
 
 func getLogFileFullPath() string {
@@ -42,10 +41,8 @@ func openLogFile(filePath string) *os.File {
 }
 
 func mlDir() {
-	dir, _ := os.Getwd()
-	fmt.Println("dir: ", dir)
+	//dir, _ := os.Getwd()
 	dd := config.ConfigGetLoggingFilePath()
-	fmt.Println("dd:", dd)
 	err := os.MkdirAll(dd, os.ModePerm)
 	if err != nil {
 		panic(err)

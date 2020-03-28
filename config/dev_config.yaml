@@ -11,4 +11,4 @@ mongo:
   port: 27017
 
 log:
-  filePath: D:/Logging/go_sugared/
+  filePath: E:/Logging/go_sugared/

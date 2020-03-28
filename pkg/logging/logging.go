@@ -29,7 +29,6 @@ const (
 )
 
 func init() {
-	fmt.Println("this is log init")
 	filePath := getLogFileFullPath()
 	F = openLogFile(filePath)
 

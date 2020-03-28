@@ -11,7 +11,10 @@ import (
 
 func main() {
 	fmt.Println("go sugared running.............")
-	config.InitConfig()
+	//config.InitConfig()
+	fmt.Println(config.ConfigGetServicePort())
+	r := config.ConfigGetLoggingFilePath()
+	fmt.Println(r)
 	logging.Debug("this is debug log....")
 	router := routers.InitRouter()
 	api.InitMongo()

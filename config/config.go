@@ -8,7 +8,7 @@ import (
 	"path"
 )
 
-var Setting *Conf
+var setting *Conf
 
 type Conf struct {
 	Server *serverModel `yaml:"server"`
@@ -17,21 +17,21 @@ type Conf struct {
 }
 
 type serverModel struct {
-	Mode string `yaml:mode`
-	Host string `yaml:host`
-	Port string `yaml:port`
+	Mode string `yaml:"mode"`
+	Host string `yaml:"host"`
+	Port string `yaml:"port"`
 }
 
 type mongo struct {
-	Port string `yaml:port`
+	Port string `yaml:"port"`
 }
 
 type log struct {
-	FilePath string `yaml:filePath`
+	FilePath string `yaml:"filePath"`
 }
 
 //LoadConfigInformation load config information for application
-func InitConfig() {
+func init() {
 	filepath, _ := os.Getwd()
 	fileFullPath := path.Join(filepath, "\\config\\dev_config.yaml")
 	fmt.Println("fileFullPath: ", fileFullPath)
@@ -47,14 +47,13 @@ func InitConfig() {
 		fmt.Printf(" config parse failed: %s", err)
 		os.Exit(-1)
 	}
-	Setting = configApplication
+	setting = configApplication
 }
 
 func ConfigGetServicePort() string {
-	return Setting.Server.Port
+	return setting.Server.Port
 }
 
 func ConfigGetLoggingFilePath() string {
-	fmt.Println("filepath:", Setting.Log.FilePath)
-	return Setting.Log.FilePath
+	return setting.Log.FilePath
 }
