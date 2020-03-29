@@ -4,20 +4,22 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"go_sugared/config"
+	"go_sugared/pkg/logging"
 	"go_sugared/routers/api/pic"
 	"go_sugared/routers/api/room"
 	"go_sugared/routers/api/user"
 )
 
 func InitRouter() *gin.Engine {
-	fmt.Println("init routers")
+	logging.InitLogging()
+	logging.Info("start init routers ")
 	gin.SetMode("debug")
 	engine := gin.New()
 	engine.Use(gin.Logger(), gin.Recovery())
-	return apiRoute(engine)
+	return apiRoutes(engine)
 }
 
-func apiRoute(engine *gin.Engine) *gin.Engine {
+func apiRoutes(engine *gin.Engine) *gin.Engine {
 	apiUser := engine.Group("hh/user")
 	{
 		//test

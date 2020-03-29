@@ -28,7 +28,7 @@ const (
 	FATAL
 )
 
-func init() {
+func InitLogging() {
 	filePath := getLogFileFullPath()
 	F = openLogFile(filePath)
 

@@ -1,23 +1,20 @@
 package api
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/mgo.v2"
 )
 
-var (
-	MgoSession *mgo.Session
-)
+var MgoSession *mgo.Session
 
-func InitMongo() {
+func InitDatabase() error {
 	var err error
 	MgoSession, err = mgo.Dial("")
 	//defer mongo.Close()
 	if err != nil {
-		fmt.Println("connect mongo error：", err)
+		return err
 	}
-
+	return nil
 }
 
 func connect(db, collection string) (*mgo.Session, *mgo.Collection) {
@@ -71,5 +68,4 @@ func UpdateBySelector(db, collectin string, query, update interface{}) error {
 	_, c := connect(db, collectin)
 	//defer ms.Close()
 	return c.Update(query, update)
-
 }

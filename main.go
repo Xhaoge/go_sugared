@@ -15,10 +15,11 @@ import (
 3.&*; */
 
 func main() {
-	fmt.Println("go sugared running.............")
-	logging.Debug("this is debug log....")
+	logging.Info("go sugared running.............")
 	router := routers.InitRouter()
-	api.InitMongo()
+	if err := api.InitDatabase(); err != nil{
+		logging.Error("init database error: %s",err)
+	}
 	s := &http.Server{
 		Addr:    fmt.Sprintf(":%s", config.ConfigGetServicePort()),
 		Handler: router,
