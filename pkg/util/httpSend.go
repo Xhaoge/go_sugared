@@ -15,7 +15,7 @@ import (
 var (
 	GET_METHOD    = "GET"
 	POST_METHOD   = "POST"
-	SENDTYPE_FROM = "from"
+	SENDTYPE_FORM = "form"
 	SENDTYPE_JSON = "json"
 )
 
@@ -30,7 +30,7 @@ type HttpSend struct {
 func NewHttpSend(url string) *HttpSend {
 	return &HttpSend{
 		Url:      url,
-		SendType: SENDTYPE_FROM,
+		SendType: SENDTYPE_FORM,
 	}
 }
 
@@ -131,7 +131,7 @@ func (h *HttpSend) send(method string) ([]byte, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, errors.New(fmt.Sprint("error http code: %d", resp.StatusCode))
+		return nil, errors.New(fmt.Sprintf("error http code: %d", resp.StatusCode))
 	}
 
 	return ioutil.ReadAll(resp.Body)

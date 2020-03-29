@@ -74,8 +74,8 @@ func GetRoomDetail(c *gin.Context) {
 		req := MakeSelector(*getreq)
 		var res []Room
 		err := api.FindAllBySelector("hh", "room", req, bson.M{"_id": 0}, &res)
-		if err != nil {
-			api.ApiDataResponse(c, 404, "find one room error...", nil)
+		if err != nil || len(res)==0{
+			api.ApiDataResponse(c, 404, "find one room error or not find...", nil)
 		} else {
 			api.ApiDataResponse(c, 200, "find one room seccess...", res)
 		}

@@ -18,6 +18,16 @@ func InitRouter() *gin.Engine {
 }
 
 func apiRoute(engine *gin.Engine) *gin.Engine {
+	apiUser := engine.Group("hh/user")
+	{
+		//test
+		apiUser.GET("/test", user.Test)
+		//用户注册登录
+		apiUser.POST("/login", user.UserLogin)
+		//更新用户信息
+		apiUser.POST("/update", user.UserUpdate)
+	}
+
 	apiRoom := engine.Group("hh/room")
 	{
 		//获取全部房源信息
@@ -40,16 +50,6 @@ func apiRoute(engine *gin.Engine) *gin.Engine {
 		apiPic.POST("/add", pic.AddPic)
 		//删除房源图片信息
 		apiPic.POST("/delete", pic.DeletePic)
-	}
-
-	apiUser := engine.Group("hh/user")
-	{
-		//test
-		apiUser.GET("/test", user.Test)
-		//用户注册登录
-		apiUser.POST("/login", user.UserLogin)
-		//更新用户信息
-		apiUser.POST("/update", user.UserUpdate)
 	}
 
 	engine.GET("/test", func(c *gin.Context) {
