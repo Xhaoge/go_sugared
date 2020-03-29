@@ -1,6 +1,5 @@
 package user
 
-
 type WxUser struct {
 	Name     string `bson:"name"`
 	Password string `bson:"password"`
@@ -20,7 +19,7 @@ type toWxLogin struct {
 type UserInfo struct {
 	Id          string   `json:"id"`
 	OpenId      string   `json:"openId"`
-	JsCode 		string	 `json:"code"`
+	JsCode      string   `json:"code"`
 	Username    string   `json:"username"`
 	Password    string   `json:"password"`
 	Phone       string   `json:"phone"`
