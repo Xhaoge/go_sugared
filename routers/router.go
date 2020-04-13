@@ -11,7 +11,6 @@ import (
 )
 
 func InitRouter() *gin.Engine {
-	logging.InitLogging()
 	logging.Info("start init routers ")
 	gin.SetMode("debug")
 	engine := gin.New()
