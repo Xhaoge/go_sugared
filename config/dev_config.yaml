@@ -13,5 +13,6 @@ mongo:
   password: 123456
   port: 27017
 
-log:
-  filePath: E:/Logging/go_sugared/
+path:
+  logPath: E:/Logging/go_sugared/
+  staticPath: E:/Logging/go_sugared/static

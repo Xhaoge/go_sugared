@@ -2,6 +2,7 @@ package logging
 
 import (
 	"fmt"
+	"go_sugared/pkg/file"
 	"log"
 	"os"
 	"path/filepath"
@@ -29,8 +30,8 @@ const (
 )
 
 func init() {
-	filePath := getLogFileFullPath()
-	F = openLogFile(filePath)
+	filePath := file.GetLogFileFullPath()
+	F = file.OpenLogFile(filePath)
 	logger = log.New(F, DefaultPrefix, log.LstdFlags)
 }
 
@@ -59,7 +60,7 @@ func setPrefix(level Level) {
 	_, file, line, ok := runtime.Caller(DefaultCallerDepth)
 	if ok {
 		logPrefix = fmt.Sprintf("[%s][%s:%d]", levelFlags[level], filepath.Base(file), line)
-		fmt.Print("logPrefix: ",logPrefix)
+		fmt.Print("logPrefix: ", logPrefix)
 	} else {
 		logPrefix = fmt.Sprintf("[%s]", levelFlags[level])
 	}

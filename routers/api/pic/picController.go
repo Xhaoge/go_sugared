@@ -2,13 +2,12 @@ package pic
 
 import (
 	"fmt"
-	"io/ioutil"
-
 	"github.com/gin-gonic/gin"
+	"go_sugared/config"
+	"go_sugared/pkg/file"
 	"go_sugared/pkg/util"
+	"io/ioutil"
 )
-
-const BASE_NAME = "E:/program/static/hh/photos"
 
 func Test(c *gin.Context) {
 	fmt.Println("file test")
@@ -25,15 +24,19 @@ func AddPic(c *gin.Context) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	file, _ := fh.Open()
-	defer file.Close()
-	bytes, err := ioutil.ReadAll(file)
+	fPic, _ := fh.Open()
+	defer fPic.Close()
+	bytes, err := ioutil.ReadAll(fPic)
 	if err != nil {
 		fmt.Println(err)
 	}
 	fileName := util.GetRandomStr(4) + "_" + util.GetRandomStr(4) + ".jpg"
-	fmt.Println("file path:", BASE_NAME+"/"+fileName)
-	err = ioutil.WriteFile(BASE_NAME+"/"+fileName, bytes, 0666)
+	picPath := config.ConfigGetStaticPath()
+	fmt.Println("file path:", picPath+"/"+fileName)
+	if !file.PathExist(picPath){
+		file.MkDir(picPath)
+	}
+	err = ioutil.WriteFile(picPath+"/"+fileName, bytes, 0666)
 	if err != nil {
 		c.JSON(500, gin.H{
 			"code": 500,
