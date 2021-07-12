@@ -3,10 +3,13 @@ package routers
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 	"go_sugared/config"
 	"go_sugared/pkg/logging"
 	"go_sugared/routers/api/pic"
 	"go_sugared/routers/api/room"
+	"go_sugared/routers/api/tag"
 	"go_sugared/routers/api/user"
 )
 
@@ -19,6 +22,7 @@ func InitRouter() *gin.Engine {
 }
 
 func apiRoutes(engine *gin.Engine) *gin.Engine {
+	engine.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	apiUser := engine.Group("hh/user")
 	{
 		//test
@@ -51,6 +55,18 @@ func apiRoutes(engine *gin.Engine) *gin.Engine {
 		apiPic.POST("/add", pic.AddPic)
 		//删除房源图片信息
 		apiPic.POST("/delete", pic.DeletePic)
+	}
+
+	apiTag := engine.Group("hh/tag")
+	{
+		//test
+		apiTag.GET("/test", tag.Test)
+		//新增房源pic
+		apiTag.POST("/add", tag.AddTag)
+		//删除房源图片信息
+		apiTag.POST("/delete", tag.DeleteTag)
+		//编辑房源信息
+		apiTag.POST("/update", tag.UpdateTag)
 	}
 
 	engine.GET("/test", func(c *gin.Context) {
