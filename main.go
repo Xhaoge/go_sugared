@@ -17,8 +17,8 @@ import (
 func main() {
 	logging.Info("go sugared running.............")
 	router := routers.InitRouter()
-	if err := api.InitDatabase(); err != nil{
-		logging.Error("init database error: %s",err)
+	if err := api.InitDatabase(); err != nil {
+		logging.Error("init database error: %s", err)
 	}
 	s := &http.Server{
 		Addr:    fmt.Sprintf(":%s", config.ConfigGetServicePort()),

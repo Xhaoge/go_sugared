@@ -12,22 +12,25 @@ import (
 var setting *Conf
 
 type Conf struct {
-	Server *serverModel `yaml:"server"`
-	Mongo  *mongo       `yaml:"mongo"`
-	Log    *log         `yaml:"log"`
+	Server *ServerModel `yaml:"server"`
+	Mongo  *Mongo       `yaml:"mongo"`
+	Log    *Log         `yaml:"log"`
 }
 
-type serverModel struct {
+type ServerModel struct {
 	Mode string `yaml:"mode"`
 	Host string `yaml:"host"`
 	Port string `yaml:"port"`
 }
 
-type mongo struct {
+type Mongo struct {
+	Host string `yaml:"host"`
+	User string `yaml:"user"`
+	Pwd  string `yaml:"password"`
 	Port string `yaml:"port"`
 }
 
-type log struct {
+type Log struct {
 	FilePath string `yaml:"filePath"`
 }
 
@@ -57,4 +60,13 @@ func ConfigGetServicePort() string {
 
 func ConfigGetLoggingFilePath() string {
 	return setting.Log.FilePath
+}
+
+func ConfigGetMongo() Mongo {
+	return Mongo{
+		Host: setting.Mongo.Host,
+		User: setting.Mongo.User,
+		Pwd: setting.Mongo.Pwd,
+		Port: setting.Mongo.Port,
+	}
 }

@@ -8,6 +8,9 @@ server:
 
 # mongo config information
 mongo:
+  host: 106.14.205.94
+  user: admin
+  password: 123456
   port: 27017
 
 log:
