@@ -2,19 +2,16 @@ package room
 
 import "time"
 
-var (
-	ADD_ROOM_ERROR  = 400
-	ADD_ROOM_SECESS = 200
-)
-
 type Room struct {
-	PackageNumber string    `json:"packageNumber,omitempty" bson:"packageNumber"`
-	UpdateTime    time.Time `json:"updateTime,omitempty" bson:"updateTime"`
-	ReleaseTime   time.Time `json:"releaseTime,omitempty" bson:"releaseTime"`
-	Isinvalid     bool      `json:"isInvalid" bson:"isInvalid"`
-	ReadNum       int       `json:"readNum" bson:"readNum"`
-	RoomInfo      `json:"roomInfo" bson:"roomInfo"`
-	Owner         `json:"owner" bson:"owner"`
+	PackageNumber 	string    	`json:"packageNumber,omitempty" bson:"packageNumber"`
+	UpdateTime    	time.Time 	`json:"updateTime,omitempty" bson:"updateTime"`
+	ReleaseTime   	time.Time 	`json:"releaseTime,omitempty" bson:"releaseTime"`
+	Isinvalid     	bool      	`json:"isInvalid" bson:"isInvalid"`
+	ReadNum       	int       	`json:"readNum" bson:"readNum"`
+	RenterId		[]string	`json:"renterId,omitempty" bson:"renterId"`
+	TagId   		[]string 	`json:"tagId,omitempty" bson:"tagId"`
+	RoomInfo      				`json:"roomInfo" bson:"roomInfo"`
+	Owner         				`json:"owner" bson:"owner"`
 }
 
 type RoomInfo struct {

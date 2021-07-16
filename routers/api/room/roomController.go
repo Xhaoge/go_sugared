@@ -18,7 +18,10 @@ import (
 // @Router /hh/room/add [post]
 func AddRoom(c *gin.Context) {
 	fmt.Println("add room")
-	roomAddReq := &Room{}
+	roomAddReq := &Room{
+		RenterId: make([]string,0),
+		TagId: make([]string,0),
+	}
 	if err := c.BindJSON(&roomAddReq); err != nil {
 		api.ApiBaseResponse(c, 400, "request param error...")
 	} else {
@@ -30,7 +33,11 @@ func AddRoom(c *gin.Context) {
 			fmt.Println("insert err: ", err)
 			api.ApiBaseResponse(c, 500, "insert room error...")
 		} else {
-			res, _ := FindOneRoomByPackageNumber(roomAddReq.PackageNumber)
+			res := &Room{
+				RenterId: make([]string, 0),
+				TagId:    make([]string, 0),
+			}
+			res, _ = FindOneRoomByPackageNumber(roomAddReq.PackageNumber)
 			api.ApiDataResponse(c, 200, "insert room seccess...", res)
 		}
 	}
@@ -78,7 +85,12 @@ func GetRoomDetail(c *gin.Context) {
 	} else {
 		fmt.Println("request: ", getreq)
 		req := MakeSelector(*getreq)
-		var res []Room
+		res := []Room{
+			{
+				RenterId: make([]string,0),
+				TagId: make([]string,0),
+			},
+		}
 		err := api.FindAllBySelector("hh", "room", req, bson.M{"_id": 0}, &res)
 		if err != nil || len(res)==0{
 			api.ApiDataResponse(c, 404, "find one room error or not find...", nil)
