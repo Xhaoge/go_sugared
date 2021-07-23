@@ -9,11 +9,6 @@ import (
 	"net/http"
 )
 
-/*
-1.反射;
-2.interface{};
-3.&*; */
-
 func main() {
 	logging.Info("go sugared running.............")
 	router := routers.InitRouter()
