@@ -6,7 +6,7 @@
 
 
 # 跟着煎鱼学go
-    https://eddycjy.gitbook.io/golang/  学个屁啊
+    https://eddycjy.gitbook.io/golang/
 
 # 使用gin项目理解
     https://github.com/itcloudy/base-framework.git
