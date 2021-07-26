@@ -6,7 +6,7 @@
 
 
 # 跟着煎鱼学go
-    https://eddycjy.gitbook.io/golang/
+    https://eddycjy.gitbook.io/golang/ 这是远程修改；
 
 # 使用gin项目理解
     https://github.com/itcloudy/base-framework.git
