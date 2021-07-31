@@ -6,6 +6,7 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
 	"go_sugared/config"
+	_ "go_sugared/docs"
 	"go_sugared/pkg/logging"
 	"go_sugared/routers/api/pic"
 	"go_sugared/routers/api/room"

@@ -6,15 +6,138 @@
     "paths": {
         "/hh/room/add": {
             "post": {
-                "produces": [
+                "consumes": [
                     "application/json"
+                ],
+                "tags": [
+                    "房源相关"
                 ],
                 "summary": "新增房源信息",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Name",
+                        "description": "姓名",
                         "name": "name",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "State",
+                        "name": "state",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "CreatedBy",
+                        "name": "created_by",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/hh/room/delete": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "房源相关"
+                ],
+                "summary": "删除房源信息",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "房源id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "State",
+                        "name": "state",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "CreatedBy",
+                        "name": "created_by",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/hh/room/getDetail": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "房源相关"
+                ],
+                "summary": "获取某一个房源具体信息",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "房源id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "State",
+                        "name": "state",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "CreatedBy",
+                        "name": "created_by",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/hh/room/update": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "房源相关"
+                ],
+                "summary": "更新房源信息",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "房源id",
+                        "name": "id",
                         "in": "query",
                         "required": true
                     },

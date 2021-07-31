@@ -10,8 +10,9 @@ import (
 )
 
 // @Summary 新增房源信息
-// @Produce  json
-// @Param name query string true "Name"
+// @Tags 房源相关
+// @Accept application/json
+// @Param name query string true "姓名"
 // @Param state query int false "State"
 // @Param created_by query int false "CreatedBy"
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"ok"}"
@@ -43,6 +44,16 @@ func AddRoom(c *gin.Context) {
 	}
 }
 
+
+
+// @Summary 删除房源信息
+// @Tags 房源相关
+// @Accept application/json
+// @Param id query string true "房源id"
+// @Param state query int false "State"
+// @Param created_by query int false "CreatedBy"
+// @Success 200 {string} json "{"code":200,"data":{},"msg":"ok"}"
+// @Router /hh/room/delete [post]
 // 删除房源信息
 func DeleteRoom(c *gin.Context) {
 	fmt.Println("delete room")
@@ -59,6 +70,14 @@ func DeleteRoom(c *gin.Context) {
 	}
 }
 
+// @Summary 更新房源信息
+// @Tags 房源相关
+// @Accept application/json
+// @Param id query string true "房源id"
+// @Param state query int false "State"
+// @Param created_by query int false "CreatedBy"
+// @Success 200 {string} json "{"code":200,"data":{},"msg":"ok"}"
+// @Router /hh/room/update [post]
 // 编辑房源信息
 func UpdateRoom(c *gin.Context) {
 	roomUpdateReq := &Room{}
@@ -76,6 +95,14 @@ func UpdateRoom(c *gin.Context) {
 	}
 }
 
+// @Summary 获取某一个房源具体信息
+// @Tags 房源相关
+// @Accept application/json
+// @Param id query string true "房源id"
+// @Param state query int false "State"
+// @Param created_by query int false "CreatedBy"
+// @Success 200 {string} json "{"code":200,"data":{},"msg":"ok"}"
+// @Router /hh/room/getDetail [post]
 // 获取具体房源信息 通过筛选条件
 func GetRoomDetail(c *gin.Context) {
 	fmt.Println("get room detail")

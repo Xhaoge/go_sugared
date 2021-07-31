@@ -3,8 +3,10 @@ info:
 paths:
   /hh/room/add:
     post:
+      consumes:
+      - application/json
       parameters:
-      - description: Name
+      - description: 姓名
         in: query
         name: name
         required: true
@@ -17,12 +19,90 @@ paths:
         in: query
         name: created_by
         type: integer
-      produces:
-      - application/json
       responses:
         "200":
           description: '{"code":200,"data":{},"msg":"ok"}'
           schema:
             type: string
       summary: 新增房源信息
+      tags:
+      - 房源相关
+  /hh/room/delete:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 房源id
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: State
+        in: query
+        name: state
+        type: integer
+      - description: CreatedBy
+        in: query
+        name: created_by
+        type: integer
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 删除房源信息
+      tags:
+      - 房源相关
+  /hh/room/getDetail:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 房源id
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: State
+        in: query
+        name: state
+        type: integer
+      - description: CreatedBy
+        in: query
+        name: created_by
+        type: integer
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 获取某一个房源具体信息
+      tags:
+      - 房源相关
+  /hh/room/update:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 房源id
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: State
+        in: query
+        name: state
+        type: integer
+      - description: CreatedBy
+        in: query
+        name: created_by
+        type: integer
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 更新房源信息
+      tags:
+      - 房源相关
 swagger: "2.0"
